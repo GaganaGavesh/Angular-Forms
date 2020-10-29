@@ -15,7 +15,7 @@
         #userData="ngModelGroup">
           <div class="form-group">
             <label for="username">Username</label>
-            <input 
+            <input
             type="text" 
             id="username" 
             class="form-control"
@@ -79,6 +79,18 @@
         type="submit"
         [disabled]="!f.valid">Submit</button>
       </form>
+      <hr>
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Your Data</h3>
+          <p>Username: {{ user.username }}</p>
+          <p>Mail: {{ user.email }}</p>
+          <p>Secret Question: {{ user.secretQuestion }}</p>
+          <p>Answer: {{ user.answer }}</p>
+          <p>Gender: {{ user.gender }}</p>
+        </div>
+      </div>
         <!-- Submit button eka press kalama request ekak yawana wa server ekata
         eka thama normal html process eka but angular eke ehema nwei karanne -->
       <!-- form eke inputs tyenna pluwan ape object ekata ganna ona nathi e nisa thama 
