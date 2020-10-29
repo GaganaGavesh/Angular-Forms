@@ -12,6 +12,14 @@ export class AppComponent {
   answer = '';
   genders: string[]= ['male','female'];
   suggestedName = '';
+
+  user = {
+    username: '',
+    email: '',
+    secretQuestion: '',
+    answer: '',
+    gender: '',
+  }
   
   @ViewChild('f') signupForm: NgForm;//submit karanna kalin from ekata acces ona nam meka hoda kramayak
 
@@ -45,8 +53,13 @@ export class AppComponent {
   //   console.log(f);
   // }
   onSubmit(){
-    console.log('Submitted..!');
+    //console.log('Submitted..!');
     console.log(this.signupForm);
+    this.user.username = this.signupForm.value.userData.username;
+    this.user.email = this.signupForm.value.userData.email;
+    this.user.secretQuestion = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.questionAnswer;
+    this.user.gender = this.signupForm.value.gender;
   }
 
 }
