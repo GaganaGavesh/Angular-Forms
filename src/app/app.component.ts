@@ -20,7 +20,8 @@ export class AppComponent {
     answer: '',
     gender: '',
   }
-  
+  submitted = false;
+
   @ViewChild('f') signupForm: NgForm;//submit karanna kalin from ekata acces ona nam meka hoda kramayak
 
   suggestUserName() {
@@ -60,6 +61,8 @@ export class AppComponent {
     this.user.secretQuestion = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.questionAnswer;
     this.user.gender = this.signupForm.value.gender;
+
+    this.submitted = !this.submitted;
   }
 
 }
