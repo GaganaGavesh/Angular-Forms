@@ -63,6 +63,18 @@ export class AppComponent {
     this.user.gender = this.signupForm.value.gender;
 
     this.submitted = !this.submitted;
+
+    this.signupForm.reset(
+      {
+          userData: {
+            username: 'SuperName',
+            email: ''
+          },
+          secret: 'pet',
+          questionAnswer: '',
+          gender: 'male'
+        }
+    );
   }
 
 }
