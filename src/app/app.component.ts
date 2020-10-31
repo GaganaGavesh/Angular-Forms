@@ -7,74 +7,75 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular forms';
-  defaultQuestion: string = 'pet';
-  answer = '';
-  genders: string[]= ['male','female'];
-  suggestedName = '';
+  // title = 'Angular forms';
+  // defaultQuestion: string = 'pet';
+  // answer = '';
+  // genders: string[]= ['male','female'];
+  // suggestedName = '';
 
-  user = {
-    username: '',
-    email: '',
-    secretQuestion: '',
-    answer: '',
-    gender: '',
-  }
-  submitted = false;
-
-  @ViewChild('f') signupForm: NgForm;//submit karanna kalin from ekata acces ona nam meka hoda kramayak
-
-  suggestUserName() {
-    const suggestedName = 'Superuser';
-    //this.suggestedName = 'Superuser';//2way data binding
-    
-    //setValue kiyana eken pluwn apita form data tikama override karanna(set values to whole form)
-    //ethakota api data dala tyna fields nuth override wela setValue eke valyes watenawa
-    // this.signupForm.setValue({
-    //   userData: {
-    //     username: suggestedName,
-    //     email: ''
-    //   },
-    //   secret: 'pet',
-    //   questionAnswer: '',
-    //   gender: 'male'
-    // })
-
-    //patchValue kiyana eka form ekata wrap karala enne form ekata setValue kiyana ekath ganna ahaki
-    //Override parts of your form
-    this.signupForm.form.patchValue({
-      userData: {
-        username: suggestedName
-      }
-    })
-  }
-
-  // onSubmit(f: NgForm){
-  //   console.log('Submitted..!');
-  //   console.log(f);
+  // user = {
+  //   username: '',
+  //   email: '',
+  //   secretQuestion: '',
+  //   answer: '',
+  //   gender: '',
   // }
-  onSubmit(){
-    //console.log('Submitted..!');
-    console.log(this.signupForm);
-    this.user.username = this.signupForm.value.userData.username;
-    this.user.email = this.signupForm.value.userData.email;
-    this.user.secretQuestion = this.signupForm.value.secret;
-    this.user.answer = this.signupForm.value.questionAnswer;
-    this.user.gender = this.signupForm.value.gender;
+  // submitted = false;
 
-    this.submitted = !this.submitted;
+  // @ViewChild('f') signupForm: NgForm;//submit karanna kalin from ekata acces ona nam meka hoda kramayak
+  // //NgForm kiyanna wrapper ekak wage ekak form ekama dala tyna
 
-    this.signupForm.reset(
-      {
-          userData: {
-            username: 'SuperName',
-            email: ''
-          },
-          secret: 'pet',
-          questionAnswer: '',
-          gender: 'male'
-        }
-    );
-  }
+  // suggestUserName() {
+  //   const suggestedName = 'Superuser';
+  //   //this.suggestedName = 'Superuser';//2way data binding
+    
+  //   //setValue kiyana eken pluwn apita form data tikama override karanna(set values to whole form)
+  //   //ethakota api data dala tyna fields nuth override wela setValue eke valyes watenawa
+  //   // this.signupForm.setValue({
+  //   //   userData: {
+  //   //     username: suggestedName,
+  //   //     email: ''
+  //   //   },
+  //   //   secret: 'pet',
+  //   //   questionAnswer: '',
+  //   //   gender: 'male'
+  //   // })
+
+  //   //patchValue kiyana eka form ekata wrap karala enne form ekata setValue kiyana ekath ganna ahaki
+  //   //Override parts of your form
+  //   this.signupForm.form.patchValue({
+  //     userData: {
+  //       username: suggestedName
+  //     }
+  //   })
+  // }
+
+  // // onSubmit(f: NgForm){
+  // //   console.log('Submitted..!');
+  // //   console.log(f);
+  // // }
+  // onSubmit(){
+  //   //console.log('Submitted..!');
+  //   console.log(this.signupForm);
+  //   this.user.username = this.signupForm.value.userData.username;
+  //   this.user.email = this.signupForm.value.userData.email;
+  //   this.user.secretQuestion = this.signupForm.value.secret;
+  //   this.user.answer = this.signupForm.value.questionAnswer;
+  //   this.user.gender = this.signupForm.value.gender;
+
+  //   this.submitted = !this.submitted;
+
+  //   this.signupForm.reset(
+  //     {
+  //         userData: {
+  //           username: 'SuperName',
+  //           email: ''
+  //         },
+  //         secret: 'pet',
+  //         questionAnswer: '',
+  //         gender: 'male'
+  //       }
+  //   );
+  // }
 
 }
