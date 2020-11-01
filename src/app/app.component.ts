@@ -1,5 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,75 +9,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // title = 'Angular forms';
-  // defaultQuestion: string = 'pet';
-  // answer = '';
-  // genders: string[]= ['male','female'];
-  // suggestedName = '';
+   title = 'Angular http Requests';
 
-  // user = {
-  //   username: '',
-  //   email: '',
-  //   secretQuestion: '',
-  //   answer: '',
-  //   gender: '',
-  // }
-  // submitted = false;
+   loadedPosts = [];
 
-  // @ViewChild('f') signupForm: NgForm;//submit karanna kalin from ekata acces ona nam meka hoda kramayak
-  // //NgForm kiyanna wrapper ekak wage ekak form ekama dala tyna
+  constructor(private http: HttpClient) {}
 
-  // suggestUserName() {
-  //   const suggestedName = 'Superuser';
-  //   //this.suggestedName = 'Superuser';//2way data binding
-    
-  //   //setValue kiyana eken pluwn apita form data tikama override karanna(set values to whole form)
-  //   //ethakota api data dala tyna fields nuth override wela setValue eke valyes watenawa
-  //   // this.signupForm.setValue({
-  //   //   userData: {
-  //   //     username: suggestedName,
-  //   //     email: ''
-  //   //   },
-  //   //   secret: 'pet',
-  //   //   questionAnswer: '',
-  //   //   gender: 'male'
-  //   // })
+  ngOnInit() {}
 
-  //   //patchValue kiyana eka form ekata wrap karala enne form ekata setValue kiyana ekath ganna ahaki
-  //   //Override parts of your form
-  //   this.signupForm.form.patchValue({
-  //     userData: {
-  //       username: suggestedName
-  //     }
-  //   })
-  // }
+  onCreatePost(postData: { title: string; content: string }) {
+    // Send Http request
+    this.http
+      .post(
+        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        postData
+      )
+      .subscribe(responseData => {
+        console.log(responseData);
+      });
+  }
 
-  // // onSubmit(f: NgForm){
-  // //   console.log('Submitted..!');
-  // //   console.log(f);
-  // // }
-  // onSubmit(){
-  //   //console.log('Submitted..!');
-  //   console.log(this.signupForm);
-  //   this.user.username = this.signupForm.value.userData.username;
-  //   this.user.email = this.signupForm.value.userData.email;
-  //   this.user.secretQuestion = this.signupForm.value.secret;
-  //   this.user.answer = this.signupForm.value.questionAnswer;
-  //   this.user.gender = this.signupForm.value.gender;
+  onFetchPosts() {
+    // Send Http request
+  }
 
-  //   this.submitted = !this.submitted;
+  onClearPosts() {
+    // Send Http request
+  }
 
-  //   this.signupForm.reset(
-  //     {
-  //         userData: {
-  //           username: 'SuperName',
-  //           email: ''
-  //         },
-  //         secret: 'pet',
-  //         questionAnswer: '',
-  //         gender: 'male'
-  //       }
-  //   );
-  // }
 
 }

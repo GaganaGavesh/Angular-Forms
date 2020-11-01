@@ -1,103 +1,57 @@
-<div class="container" *ngIf="false">
+<div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <!-- Angular wala forms tag eka athule tyna dewal auto ma JSON obj ekakata dagannawa
-      eth input daganne ne ,input wlata dannna ona ngModel kiyana eka ethakota angular eka danagannawa 
-      e field ekath mekata danna ona ekak kiyala -->
-
-      <!-- Submit button eka click kalama e default behavior eka use karala me from data tika gannawa -->
-      <!-- #f="ngForm" eken kiyaawa "Hey, give me access to your form element" -->
-      <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
-      <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <div 
-        id="user-data" 
-        ngModelGroup="userData"
-        #userData="ngModelGroup">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-            type="text" 
-            id="username" 
-            class="form-control"
-            ngModel
-            name="username"
-            required
-            >
-          </div>
-          <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
-          <div class="form-group">
-            <label for="email">Mail</label>
-            <input 
-            type="email" 
-            id="email" 
-            class="form-control"
-            ngModel
-            name="email"
-            required
-            email
-            #email="ngModel">
-            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email</span>
-          </div>
-        </div>
-        <p *ngIf="!userData.valid && userData.touched">User data is invalid..!</p>
-        <!-- Useer data kiyana group ekama #userdata kiyana local reference ekata dala 
-        userdata wala validity check karanna ahaki -->
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
         <div class="form-group">
-          <label for="secret">Secret Questions</label>
-          <select 
-          id="secret" 
-          class="form-control"
-          [ngModel]="defaultQuestion"
-          name="secret">
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            ngModel
+            name="title"
+          />
         </div>
         <div class="form-group">
+          <label for="content">Content</label>
           <textarea
-          class="form-control" 
-          name="questionAnswer" 
-          rows="3"
-          [(ngModel)]="answer"></textarea>
-        </div>
-        <p>Your reply : {{ answer }}</p>
-        <div 
-        class="radio"
-        *ngFor="let gender of genders">
-          <label>
-            <input 
-            type="radio"
-            name="gender"
+            class="form-control"
+            id="content"
+            required
             ngModel
-            [value]="gender"
-            required>
-            {{ gender }}
-          </label>
+            name="content"
+          ></textarea>
         </div>
-        <button 
-        class="btn btn-primary" 
-        type="submit"
-        [disabled]="!f.valid">Submit</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+          Send Post
+        </button>
       </form>
-      <hr>
-      
-      <div class="row" >
-        <div class="col-xs-12" *ngIf="submitted">
-          <h3>Your Data</h3>
-          <p>Username: {{ user.username }}</p>
-          <p>Mail: {{ user.email }}</p>
-          <p>Secret Question: {{ user.secretQuestion }}</p>
-          <p>Answer: {{ user.answer }}</p>
-          <p>Gender: {{ user.gender }}</p>
-        </div>
-      </div>
-        <!-- Submit button eka press kalama request ekak yawana wa server ekata
-        eka thama normal html process eka but angular eke ehema nwei karanne -->
-      <!-- form eke inputs tyenna pluwan ape object ekata ganna ona nathi e nisa thama 
-      ngModel kiyana eka tynne, eka magin apata pluwan eka dala tyna fields pamanak object key value pairs
-      walata add karanna -->
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <button class="btn btn-primary" (click)="onFetchPosts()">
+        Fetch Posts
+      </button>
+      |
+      <button
+        class="btn btn-danger"
+        [disabled]="loadedPosts.length < 1"
+        (click)="onClearPosts()"
+      >
+        Clear Posts
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <p>No posts available!</p>
     </div>
   </div>
 </div>
- 
-<app-reactive-froms></app-reactive-froms>
